@@ -1,0 +1,27 @@
+{
+    "name": "jimmyjetter/live-smb-connect-exchange",
+    "description": "Connecting live (current) smb app to exchange for tv & utilities and mtn",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    },
+    "authors": [
+        {
+            "name": "James Atiah",
+            "email": "jamesanabiah27@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+
+    "require": {
+        "ext-json": "*",
+        "ext-curl": "*"
+    },
+    "require-dev": {
+        "jms-serializer/serializer": "1.7.*",
+        "phpdocumentor/phpdocumentor": "^2.9"
+    }
+}
