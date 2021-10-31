@@ -1,7 +1,15 @@
 <?php
 
+
 namespace Korba;
-class CURRENTSMS extends CURRENTAPI
+
+/**
+ * Class SMS help send messages.
+ * Class to make use of Info SMS API service to send sms messages. It extends Class API. {@inheritDoc}
+ * @see http://infobip.com Infobip Website
+ * @package Korba
+ */
+class SMS extends API
 {
     /** @var string|null Global recognition for source of message to avoid writing with each message sent. */
     protected $global_from;
@@ -37,9 +45,9 @@ class CURRENTSMS extends CURRENTAPI
     public function send($text, $to, $from = null)
     {
         $formatter = function ($value) {
-            return CURRENTUtil::numberIntFormat($value);
+            return Util::numberIntFormat($value);
         };
-        $to = gettype($to) == 'array' ? array_map($formatter, $to) : CURRENTUtil::numberIntFormat($to);
+        $to = gettype($to) == 'array' ? array_map($formatter, $to) : Util::numberIntFormat($to);
         $data = [
             'to' => $to,
             'text' => $text

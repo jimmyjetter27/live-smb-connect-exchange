@@ -1,16 +1,26 @@
 <?php
 
+
+/**
+ * Class XChangeV1 at src/XChangeV1.php.
+ * File containing XChangeV1 class
+ * @api
+ * @author Isaac Adzah Sai <isaacsai030@gmail.com>
+ * @version 2.5.2
+ */
+
+//namespace JimmyJetter\SmbExchange;
 namespace Korba;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 
 /**
-* Class XChangeV1 makes interruption with exchange easier.
+ * Class XChangeV1 makes interruption with exchange easier.
  * @todo Write the Docs
-* @package Korba
-*/
-class CurrentXchangeV1 extends CURRENTAPI
+ * @package Korba
+ */
+class XChangeV1 extends API
 {
     protected $secret_key;
     protected $client_key;
@@ -27,11 +37,11 @@ class CurrentXchangeV1 extends CURRENTAPI
             'Content-Type: application/json'
         );
         if ($mode == 'aws') {
-            $url = CurrentXchangeV1::$aws_url;
+            $url = XChangeV1::$aws_url;
         } else if ($mode == 'test') {
-            $url = CurrentXchangeV1::$test_url;
+            $url = XChangeV1::$test_url;
         } else {
-            $url = CurrentXchangeV1::$live_url;
+            $url = XChangeV1::$live_url;
         }
         parent::__construct($url, $headers, $proxy);
         $this->secret_key = $secret_key;
@@ -75,7 +85,7 @@ class CurrentXchangeV1 extends CURRENTAPI
         $vodafone_voucher_code = null, $description = null, $payer_name = null, $extra_info = null)
     {
         $data = [
-            'customer_number' => CURRENTUtil::numberGHFormat($customer_number),
+            'customer_number' => Util::numberGHFormat($customer_number),
             'amount' => $amount,
             'transaction_id' => $transaction_id,
             'network_code' => $network_code,
@@ -404,7 +414,7 @@ class CurrentXchangeV1 extends CURRENTAPI
     public function gwcl_lookup($customer_number, $account_number, $transaction_id)
     {
         $data = [
-            'customer_number' => CURRENTUtil::number233Format($customer_number),
+            'customer_number' => Util::number233Format($customer_number),
             'account_number' => $account_number,
             'transaction_id' => $transaction_id
         ];
@@ -869,7 +879,7 @@ class CurrentXchangeV1 extends CURRENTAPI
         $description = null, $payer_name = null, $extra_info = null)
     {
         $data = [
-            'customer_number' => CURRENTUtil::number233Format($customer_number),
+            'customer_number' => Util::number233Format($customer_number),
             'transaction_id' => $transaction_id,
             'amount' => $amount,
             'frequency_type' => $frequency_type,
@@ -895,7 +905,7 @@ class CurrentXchangeV1 extends CURRENTAPI
         $description = null, $payer_name = null, $extra_info = null)
     {
         $data = [
-            'customer_number' => CURRENTUtil::number233Format($customer_number),
+            'customer_number' => Util::number233Format($customer_number),
             'transaction_id' => $transaction_id,
             'amount' => $amount,
             'frequency_type' => $frequency_type,
@@ -917,7 +927,7 @@ class CurrentXchangeV1 extends CURRENTAPI
     public function mtn_recurring_cancel_mandate($customer_number, $transaction_id, $mandate_id, $description = null)
     {
         $data = [
-            'customer_number' => CURRENTUtil::number233Format($customer_number),
+            'customer_number' => Util::number233Format($customer_number),
             'transaction_id' => $transaction_id,
             'mandate_id' => $mandate_id
         ];
@@ -931,7 +941,7 @@ class CurrentXchangeV1 extends CURRENTAPI
     public function mtn_recurring_cancel_pre_approval($customer_number)
     {
         $data = [
-            'customer_number' => CURRENTUtil::number233Format($customer_number)
+            'customer_number' => Util::number233Format($customer_number)
         ];
         return $this->call('mtn_recurring_cancel_pre_approval/', $data);
     }

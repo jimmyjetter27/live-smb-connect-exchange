@@ -1,7 +1,23 @@
 <?php
 
+/**
+ * Class Util at src/Util.php.
+ * File containing Util class
+ * @api
+ * @author Isaac Adzah Sai <isaacsai030@gmail.com>
+ * @version 2.5.2
+ */
 namespace Korba;
-final class CURRENTUtil
+
+/**
+ * Class Util is a helper class.
+ * A class with function and constant to help easily create USSD.
+ * The USSD provider is TxtGhana and the consumer is Korba
+ * @see https://www.txtghana.com TxtGhana Website
+ * @see https://www.korbaweb.com Korba Website
+ * @package Korba
+ */
+final class Util
 {
     /**
      * Util constructor.
@@ -366,3 +382,4 @@ final class CURRENTUtil
         }
     }
 }
+
