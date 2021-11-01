@@ -492,7 +492,6 @@ class XChangeV1 extends API
                     return $secondBundles;
                     }
                 }
-            }
             $list = $this->mtn_filter($list, $filter);
             return [
                 'success' => true,
