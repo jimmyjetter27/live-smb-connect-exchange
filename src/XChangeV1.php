@@ -474,14 +474,24 @@ class XChangeV1 extends API
         $list = [];
         if (isset($result['success']) && $result['success']) {
 //            foreach ($result['bundles'][0]['bundles'] as $bundle) {
-            foreach ($result['bundles'] as $bundle) {
-                array_push($list, [
-                    $bundle
-//                    'id' => $bundle['product_id'],
-//                    'price' => $bundle['amount'],
-//                    'description' => $bundle['name'],
-//                    'short_description' => preg_replace('/^MTN ((Daily)|(Weekly)|(Monthly)|(YouTube)) Data Bundle /', '', $bundle['name'],)
-                ]);
+//            foreach ($result['bundles'] as $bundle) {
+//                array_push($list, [
+//                        'id' => $bundle['product_id'],
+//                        'price' => $bundle['amount'],
+//                        'description' => $bundle['name'],
+//                        'short_description' => preg_replace('/^MTN ((Daily)|(Weekly)|(Monthly)|(YouTube)) Data Bundle /', '', $bundle['name'],)
+//                    ]);
+//            }
+            foreach ($result['bundles'] as $firstBundles) {
+                foreach ($firstBundles as $secondBundles) {
+                    foreach ($secondBundles['bundles'] as &$bundle) {
+                        array_push($list, [
+                            'id' => $bundle['product_id'],
+                            'price' => $bundle['amount'],
+                            'description' => $bundle['name']
+                        ]);
+                    }
+                }
             }
             $list = $this->mtn_filter($list, $filter);
             return [
