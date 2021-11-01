@@ -489,7 +489,7 @@ class XChangeV1 extends API
             foreach ($result as $firstBundles) {
                 foreach ($firstBundles['bundles'] as $secondBundles) {
                     Log::debug($secondBundles);
-                    return $secondBundles;
+                    echo $secondBundles['name'];
                     }
                 }
             $list = $this->mtn_filter($list, $filter);
