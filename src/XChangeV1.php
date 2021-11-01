@@ -488,10 +488,13 @@ class XChangeV1 extends API
             $result = $result['bundles'];
             foreach ($result as $firstBundles) {
                 foreach ($firstBundles['bundles'] as $secondBundles) {
-                    Log::debug($secondBundles);
-                    echo $secondBundles['name'];
-                    }
+                    array_push($list, [
+                        'id' => $secondBundles['product_id'],
+                        'price' => $secondBundles['amount'],
+                        'description' => $secondBundles['name']
+                    ]);
                 }
+            }
             $list = $this->mtn_filter($list, $filter);
             return [
                 'success' => true,
