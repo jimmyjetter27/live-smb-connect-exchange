@@ -484,7 +484,7 @@ class XChangeV1 extends API
 //            }
             foreach ($result['bundles'] as $data_list) {
                 foreach ($data_list as $firstBundles) {
-                    foreach ($firstBundles as $secondBundles) {
+                    foreach ($firstBundles['bundles'] as $secondBundles) {
                         foreach ($secondBundles['bundles'] as &$bundle) {
                             array_push($list, [
                                 'id' => $bundle['product_id'],
