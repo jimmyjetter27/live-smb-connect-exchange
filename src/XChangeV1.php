@@ -486,7 +486,7 @@ class XChangeV1 extends API
             Log::debug(json_encode($result));
             foreach ($result['bundles'] as $firstBundles)
             {
-                return gettype($firstBundles).' data '.$firstBundles;
+                return gettype($firstBundles);
             }
             $list = $this->mtn_filter($list, $filter);
             return [
