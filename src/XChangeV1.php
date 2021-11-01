@@ -485,12 +485,12 @@ class XChangeV1 extends API
 //            }
 //            Log::debug($result);
 //            dd($result); // die and dump
-            foreach ($result['bundles'] as $firstBundles)
-            {
-                return $result['bundles'];
-                foreach ($firstBundles['bundles'] as $secondBundles)
-                {
-                    return $secondBundles;
+            $result = $result['bundles'];
+            foreach ($result as $firstBundles) {
+                foreach ($firstBundles as $secondBundles) {
+                    foreach ($secondBundles['bundles'] as &$bundle) {
+                        echo $bundle['short_name'];
+                    }
                 }
             }
             $list = $this->mtn_filter($list, $filter);
