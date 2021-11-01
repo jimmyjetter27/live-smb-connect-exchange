@@ -486,7 +486,7 @@ class XChangeV1 extends API
 //            Log::debug($result);
 //            dd($result); // die and dump
             $result = $result['bundles'];
-            foreach ($result as $firstBundles) {
+            foreach ($result['bundles'] as $firstBundles) {
                 foreach ($firstBundles as $secondBundles) {
                     foreach ($secondBundles['bundles'] as &$bundle) {
                         echo $bundle['short_name'];
