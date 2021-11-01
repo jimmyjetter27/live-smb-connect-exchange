@@ -490,7 +490,8 @@ class XChangeV1 extends API
                 foreach ($firstBundles['bundles'] as $secondBundles) {
                     Log::debug($secondBundles);
                     foreach ($secondBundles as &$bundle) {
-                        echo $bundle['short_name'];
+//                        echo $bundle['short_name'];
+                        return gettype($bundle);
                     }
                 }
             }
