@@ -482,14 +482,16 @@ class XChangeV1 extends API
 //                        'short_description' => preg_replace('/^MTN ((Daily)|(Weekly)|(Monthly)|(YouTube)) Data Bundle /', '', $bundle['name'],)
 //                    ]);
 //            }
-            foreach ($result['bundles'] as $firstBundles) {
-                foreach ($firstBundles as $secondBundles) {
-                    foreach ($secondBundles['bundles'] as &$bundle) {
-                        array_push($list, [
-                            'id' => $bundle['product_id'],
-                            'price' => $bundle['amount'],
-                            'description' => $bundle['name']
-                        ]);
+            foreach ($result['bundles'] as $data_list) {
+                foreach ($data_list as $firstBundles) {
+                    foreach ($firstBundles as $secondBundles) {
+                        foreach ($secondBundles['bundles'] as &$bundle) {
+                            array_push($list, [
+                                'id' => $bundle['product_id'],
+                                'price' => $bundle['amount'],
+                                'description' => $bundle['name']
+                            ]);
+                        }
                     }
                 }
             }
