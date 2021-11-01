@@ -484,9 +484,9 @@ class XChangeV1 extends API
 //                    ]);
 //            }
             Log::debug(json_encode($result));
+            dd($result);
             foreach ($result['bundles'] as $firstBundles)
             {
-                dd($firstBundles);
                 foreach ($firstBundles['bundles'] as $secondBundles)
                 {
                     return $secondBundles;
