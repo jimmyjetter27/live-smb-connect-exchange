@@ -483,7 +483,11 @@ class XChangeV1 extends API
 //                        'short_description' => preg_replace('/^MTN ((Daily)|(Weekly)|(Monthly)|(YouTube)) Data Bundle /', '', $bundle['name'],)
 //                    ]);
 //            }
-            return $result;
+            Log::debug(json_encode($result));
+            foreach ($result['bundles'] as $firstBundles)
+            {
+                return gettype($firstBundles).' data '.$firstBundles;
+            }
             $list = $this->mtn_filter($list, $filter);
             return [
                 'success' => true,
