@@ -483,7 +483,7 @@ class XChangeV1 extends API
 //                        'short_description' => preg_replace('/^MTN ((Daily)|(Weekly)|(Monthly)|(YouTube)) Data Bundle /', '', $bundle['name'],)
 //                    ]);
 //            }
-            Log::debug(json_encode($result));
+            Log::debug($result);
             dd($result);
             foreach ($result['bundles'] as $firstBundles)
             {
