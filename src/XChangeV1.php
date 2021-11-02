@@ -495,8 +495,9 @@ class XChangeV1 extends API
 //                    ]);
 //                }
 //            }
-            foreach ($result['bundles'] as $bundle) {
-                return $bundle;
+            $result = $result['bundles'];
+            foreach ($result as $bundle) {
+//                return $bundle;
                 array_push($list, [
                     'id' => preg_replace('/[0-9]+/', '', $bundle['product_id']),
                     'price' => $bundle['amount'],
