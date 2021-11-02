@@ -483,19 +483,25 @@ class XChangeV1 extends API
 //                        'short_description' => preg_replace('/^MTN ((Daily)|(Weekly)|(Monthly)|(YouTube)) Data Bundle /', '', $bundle['name'],)
 //                    ]);
 //            }
-//            Log::debug($result);
-//            dd($result); // die and dump
-            $result = $result['bundles'];
-            foreach ($result as $firstBundles) {
-                foreach ($firstBundles['bundles'] as $secondBundles) {
-                    array_push($list, [
-                        'id' => preg_replace('/[0-9]+/', '', $secondBundles['product_id']),
-                        'price' => $secondBundles['amount'],
-                        'description' => "{$secondBundles['name']} - GHC " . preg_replace('()', '', $secondBundles['amount'])
-                    ]);
-                }
+
+            // working
+//            $result = $result['bundles'];
+//            foreach ($result as $firstBundles) {
+//                foreach ($firstBundles['bundles'] as $secondBundles) {
+//                    array_push($list, [
+//                        'id' => preg_replace('/[0-9]+/', '', $secondBundles['product_id']),
+//                        'price' => $secondBundles['amount'],
+//                        'description' => "{$secondBundles['name']} - GHC " . preg_replace('()', '', $secondBundles['amount'])
+//                    ]);
+//                }
+//            }
+            foreach ($result['bundles'] as $bundle) {
+                array_push($list, [
+                    'id' => preg_replace('/[0-9]+/', '', $bundle['product_id']),
+                    'price' => $bundle['amount'],
+                    'description' => "{$bundle['name']} - GHC " . preg_replace('()', '', $bundle['amount'])
+                ]);
             }
-//            $list = $this->mtn_filter($list, $filter);
             return [
                 'success' => true,
                 'bundles' => $list
