@@ -489,9 +489,9 @@ class XChangeV1 extends API
             foreach ($result as $firstBundles) {
                 foreach ($firstBundles['bundles'] as $secondBundles) {
                     array_push($list, [
-                        'id' => $secondBundles['product_id'],
+                        'id' => preg_replace('/[0-9]+/', '', $secondBundles['product_id']),
                         'price' => $secondBundles['amount'],
-                        'description' => $secondBundles['name']
+                        'description' => "{$secondBundles['name']} - GHC " . preg_replace('()', '', $secondBundles['amount'])
                     ]);
                 }
             }
