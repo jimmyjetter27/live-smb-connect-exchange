@@ -25,11 +25,6 @@ class XChangeV1 extends API
     protected $secret_key;
     protected $client_key;
     protected $client_id;
-    protected static $live_url = 'https://xchange.korba365.com/api/v1.0';
-//    protected static $live_url = 'https://xchange.korbaweb.com/api/v1.0'; // Cyber Sai's url
-//    protected static $live_url = 'https://khc1qo46gk-vpce-0966664bebf81f8fa.execute-api.eu-west-1.amazonaws.com/private '; // new private (smb) exchange url
-//    protected static $test_url = 'https://korba-xchange.herokuapp.com/api/v1.0';
-    protected static $test_url = 'https://xchange.korba365.com/api/v1.0/'; // Rais Test
     protected static $aws_url = 'http://internal-awseb-e-e-awsebloa-kxexw3t2bgt7-1521297916.eu-west-1.elb.amazonaws.com/api/v1.0';
 
     public function __construct($secret_key, $client_key, $client_id, $mode = 'test', $proxy = null)
@@ -41,9 +36,9 @@ class XChangeV1 extends API
         if ($mode == 'aws') {
             $url = XChangeV1::$aws_url;
         } else if ($mode == 'test') {
-            $url = XChangeV1::$test_url;
+          $url = env('TEST_URL');
         } else {
-            $url = XChangeV1::$live_url;
+            $url = env('LIVE_URL');
         }
         parent::__construct($url, $headers, $proxy);
         $this->secret_key = $secret_key;
