@@ -495,7 +495,7 @@ class XChangeV1 extends API
                     ]);
                 }
             }
-            $list = $this->mtn_filter($list, $filter);
+//            $list = $this->mtn_filter($list, $filter);
             return [
                 'success' => true,
                 'bundles' => $list
