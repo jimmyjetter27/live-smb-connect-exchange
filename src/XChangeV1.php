@@ -483,27 +483,17 @@ class XChangeV1 extends API
 //                        'short_description' => preg_replace('/^MTN ((Daily)|(Weekly)|(Monthly)|(YouTube)) Data Bundle /', '', $bundle['name'],)
 //                    ]);
 //            }
-
-            // working
-//            $result = $result['bundles'];
-//            foreach ($result as $firstBundles) {
-//                foreach ($firstBundles['bundles'] as $secondBundles) {
-//                    array_push($list, [
-//                        'id' => preg_replace('/[0-9]+/', '', $secondBundles['product_id']),
-//                        'price' => $secondBundles['amount'],
-//                        'description' => "{$secondBundles['name']} - GHC " . preg_replace('()', '', $secondBundles['amount'])
-//                    ]);
-//                }
-//            }
             $result = $result['bundles'];
-            foreach ($result as $bundle) {
-//                return $bundle;
-                array_push($list, [
-                    'id' => preg_replace('/[0-9]+/', '', $bundle['product_id']),
-                    'price' => $bundle['amount'],
-                    'description' => "{$bundle['name']} - GHC " . preg_replace('()', '', $bundle['amount'])
-                ]);
+            foreach ($result as $firstBundles) {
+                foreach ($firstBundles['bundles'] as $secondBundles) {
+                    array_push($list, [
+                        'id' => preg_replace('/[0-9]+/', '', $secondBundles['product_id']),
+                        'price' => $secondBundles['amount'],
+                        'description' => "{$secondBundles['name']} - GHC " . preg_replace('()', '', $secondBundles['amount'])
+                    ]);
+                }
             }
+//            $list = $this->mtn_filter($list, $filter);
             return [
                 'success' => true,
                 'bundles' => $list
